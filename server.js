@@ -34,5 +34,14 @@ mongoose.connect(process.env.DATABASE,
 mongoose.set('useCreateIndex', true);
 
 //Routers
+const apiRouter = express.Router();
+app.use("/api", apiRouter);
+
 const productRoutes = require("./routes/product");
-app.use("/api/products", productRoutes);
+apiRouter.use("/products", productRoutes);
+const categoryRoutes = require("./routes/category");
+apiRouter.use("/categories", categoryRoutes);
+const ownerRoutes = require("./routes/owner");
+apiRouter.use("/owners", ownerRoutes)
+
+
