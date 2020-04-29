@@ -17,17 +17,19 @@
     </div>
 
     <div class="a-spacing-large"></div>
-    <div class="conteiner-fluid browsing-history">
-      <div class="row ml-1">
-        <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-6 br bb">
+    
+    <div class="conteiner-fluid m-3 browsing-history">
+      <div class="row">
+
+        <div v-for="(product) in products" :key="product._id" class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-6 br bb">
           <div class="history-box">
             <a href="" class="a-link-normal">
-              <img src="#" class="img-fluid">
+              <img :src="imgUrl + product.photo" class="img-fluid">
             </a>
             <div class="a-spacing-top-base asin-title">
               <span class="a-text-normal" >
                 <div class="p13n-sc-truncate">
-                  Product title
+                  {{ product.title }}
                 </div>
               </span>
             </div>
@@ -44,7 +46,7 @@
             </div>
             <div class="a-row">
               <span class="a-size-base a-color-price">
-                  <span class="p13n-sc-price">$38</span>
+                  <span class="p13n-sc-price">${{ product.price }}</span>
               </span>
             </div>
             <div class="a-row">
@@ -53,27 +55,28 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
-
-    <pre>
-      {{ products }}
-    </pre>
   </main>
-
 </template>
 
 <script>
 export default {
   async asyncData ({ $axios }) {
     try{
-      let resp = await $axios.$get("http://localhost:3001/api/products");
+      let resp = await $axios.$get("/products");
+
       return {
         products: resp
       };
-      console.log("Resp: " + resp);
     } catch(err) {
-      console.log("Error: " + err);
+      console.log("asyncData: " + err);
+    }
+  },
+ computed: {
+    imgUrl: function () {
+      return process.env.IMG_URL;
     }
   }
 }
