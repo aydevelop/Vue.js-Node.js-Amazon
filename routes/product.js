@@ -9,12 +9,44 @@ router.post('/', upload.single('photo'), t(async (req, res) => {
     product.description = req.body.description;
     product.photo = req.file.filename;
     product.stockQuantity = req.body.stockQuantity;
-    await product.save();
+    product.price = req.body.price;
     
-    res.json({
-        success: true,
-        message: "Product saved"
-    });
+    res.json(await product.save());
+}));
+
+router.get('/', t(async (req, res) => {
+    let products = await Product.find();
+    res.json(products);
+}));
+
+router.get('/:id', t(async (req, res) => {
+    let product = await Product.findOne({ _id: req.params.id });
+    res.json(product);
+}));
+
+router.put('/:id', upload.single('photo'), t(async (req, res) => {
+    let product = await Product.findOneAndUpdate(
+        { _id: req.params.id },
+        { $set: { 
+            title: req.body.title,
+            description: req.body.description,
+            photo: req.file.filename,
+            stockQuantity: req.body.stockQuantity,
+            price: req.body.price,            
+            category: req.body.categoryID,
+            owner: req.body.ownerID
+        } }, { upsert: true }
+    );
+    
+    res.json(product);
+}));
+
+router.delete('/:id', t(async (req, res) => {
+    let product = await Product.findOneAndDelete(
+        { _id: req.params.id }
+    );
+    
+    res.json(product);
 }));
 
 module.exports = router;
