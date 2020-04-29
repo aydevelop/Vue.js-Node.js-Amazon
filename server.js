@@ -2,14 +2,22 @@ const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const app = express();
+const fs = require('fs');
 require('dotenv').config();
-const User = require("./models/user");
 
+const app = express();
+
+//Middlewares
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded( {extended: false} ));
+const dir = __dirname + "/uploads";
+app.use(express.static(dir));
+ if (!fs.existsSync(dir)){ 
+     if(fs.mkdirSync(dir)) { throw new Error(dir + ' - does not exist'); }
+ }
 
+//App connect
 mongoose.connect(process.env.DATABASE,  
 { 
     useNewUrlParser: true,
@@ -23,19 +31,8 @@ mongoose.connect(process.env.DATABASE,
         console.log("App listening " + process.env.SERVER_PORT + " port");
     });
 });
+mongoose.set('useCreateIndex', true);
 
-app.get("/", (req, res) => {
-    res.json("Hello amazon clone");
-});
-
-app.post("/", (req, res) => {
-    let user = new User();
-    user.name = req.body.name;
-    user.email = req.body.email;
-    user.password = req.body.password;
-
-    user.save(err => {
-        if(err){ res.json(err); }
-        else{ res.json("User saved"); }
-    });
-});  
+//Routers
+const productRoutes = require("./routes/product");
+app.use("/api/products", productRoutes);
