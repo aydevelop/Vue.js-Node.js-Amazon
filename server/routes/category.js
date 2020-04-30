@@ -15,10 +15,7 @@ router.post('/', t(async (req, res) => {
 
 router.get('/', t(async (req, res) => {
     let categories = await Category.find();
-    res.json({
-        success: true,
-        categories
-    });
+    res.json(categories);
 }));
 
 module.exports = router;

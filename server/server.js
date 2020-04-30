@@ -3,11 +3,13 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const fs = require('fs');
+const cors = require("cors"); 
 require('dotenv').config();
 
 const app = express();
 
 //Middlewares
+app.use(cors())
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded( {extended: false} ));
