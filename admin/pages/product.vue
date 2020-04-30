@@ -91,7 +91,7 @@ export default {
                 owners: ownerResp
             }    
         } catch (error) {
-            console.log("Error asyncData");
+            console.log(error);
         }
     },
 
@@ -128,7 +128,7 @@ export default {
                 let result = await this.$axios.$post("/products", data);
                 this.$router.push("/");
             } catch (error) {
-                console.log("Error onAddProduct");
+                console.log(error);
             }
         }
     }

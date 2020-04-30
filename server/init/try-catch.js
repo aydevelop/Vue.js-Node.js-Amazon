@@ -3,7 +3,7 @@ function wrapper(f) {
         try {
             return await f.apply(this, arguments);
         } catch(e) {
-            arguments[1].status(500).json({
+            arguments[1].json({
                 success: false,
                 message: e.message
             });
