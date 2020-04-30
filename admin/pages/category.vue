@@ -9,7 +9,7 @@
 
                     <form>
                         <div class="a-spacing-top-medium">
-                            <label>Type</label>
+                            <label>Title</label>
                             <input class="w-100 a-input-text" type="text" v-model="title" >
                         </div>
 

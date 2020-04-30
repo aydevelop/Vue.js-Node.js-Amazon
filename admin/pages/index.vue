@@ -10,7 +10,7 @@
 
           <a href="/product" class="a-button-buy-again">Add a new product</a>
           <a href="/category" class="a-button-buy-again margin-right-10">Add a new category</a>
-          <a href="#" class="a-button-buy-again margin-right-10">Add a new owner</a>
+          <a href="/owner" class="a-button-buy-again margin-right-10">Add a new owner</a>
         
         </div>
       </div>
