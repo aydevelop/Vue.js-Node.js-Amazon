@@ -10,14 +10,14 @@ router.post('/', upload.single('photo'), t(async (req, res) => {
     product.photo = req.file.filename;
     product.stockQuantity = req.body.stockQuantity;
     product.price = req.body.price;
-    product.ownerID = req.body.ownerID;
-    product.categoryID = req.body.categoryID;
+    product.owner = req.body.ownerID;
+    product.category = req.body.categoryID;
     
     res.json(await product.save());
 }));
 
 router.get('/', t(async (req, res) => {
-    let products = await Product.find();
+    let products = await Product.find().populate('owner category').exec();
     res.json(products);
 }));
 
