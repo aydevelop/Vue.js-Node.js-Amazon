@@ -22,7 +22,7 @@ router.get('/', t(async (req, res) => {
 }));
 
 router.get('/:id', t(async (req, res) => {
-    let product = await Product.findOne({ _id: req.params.id });
+    let product = await Product.findOne({ _id: req.params.id }).populate('owner category').exec();
     res.json(product);
 }));
 

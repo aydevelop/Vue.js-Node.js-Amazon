@@ -11,7 +11,7 @@
           <div>                          
             <div class="mainResults mt-4">
               <ul class="s-result-list">
-                <li style="display: block; float: left; width: 400px" class="s-result-item celwidget" 
+                <li class="s-result-item celwidget" 
                 :key="product._id"
                 v-for="product in products">
                   <div class="s-item-container">
@@ -24,15 +24,13 @@
 
                     <div>
                       <div class="row">
-                        <div class="col-sm-3 text-center">
-                          <a href="#" class="text-left">
-                            <img style="position: relative; left: 15px" :src="imgUrl + '/' + product.photo" class="img-fluid">
-                          </a>
-                        </div>
+                      <div class="col-sm-3 text-center">
+                        <a href="#" class="text-left">
+                          <img style="position: relative; left: 15px" :src="imgUrl + '/' + product.photo" class="img-fluid">
+                        </a>
                       </div>
-                    </div>
 
-                    <div class="col-sm-9">
+                      <div class="col-sm-9">
                       <div class="a-row a-spacing-small">
                         <a href="#" class="a-link-normal">
                           <h2 class="a-size-medium">
@@ -117,6 +115,11 @@
 
                       </div>
                     </div>
+                      </div>
+                    </div>
+
+                    
+
                   </div>
                 </li>
               </ul>
