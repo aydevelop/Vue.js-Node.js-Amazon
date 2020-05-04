@@ -31,6 +31,20 @@ router.get("/user", verify,  t(async (req, res) => {
      res.json({user});
 }));
 
+router.put("/user", verify,  t(async (req, res) => {
+    let user = await User.findOne({ _id: req.decoded._id });
+   
+    if(user) {
+        if(req.body.name) user.name = req.body.name;
+        if(req.body.email) user.name = req.body.email;
+        if(req.body.password) user.name = req.body.password;
+        
+        await user.save();
+        res.json({user});
+    }
+}));
+
+
 router.post("/login", t(async (req, res) => {
     let user = await User.findOne({ email: req.body.email });
 

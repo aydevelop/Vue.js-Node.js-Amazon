@@ -6,9 +6,9 @@
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="logo-area">
-                                <a href="#">
+                                <nuxt-link to="/">
                                     <img src="/img/logo.png" alt="Logo" class="img-fluid" >
-                                </a>
+                                </nuxt-link>
                             </div>
                         </div>
 
@@ -74,16 +74,29 @@
                                         </span>
                                     </span>
                                 </a>
-                                <!-- <span class="icp-nav-link-border"></span> -->
-                                <nuxt-link to="/register" id="nav-link-accountList"
+                                <template v-if="isAuthenticated">
+                                    <nuxt-link to="/profile" id="nav-link-accountList"
                                     tabindex="0" class="nav-a nav-a-2">
-                                    <span class="nav-line-1" >Hello, Sign in</span>
-                                    <span class="nav-line-2">
-                                        Account &amp; Lists
-                                        <span class="nav-icon nav-arrow" 
-                                        style="visability: visible" ></span>
-                                    </span>
-                                </nuxt-link>
+                                       <span class="nav-line-1" >Hello</span>
+                                       <span class="nav-line-2">
+                                            {{ loggedInUser.name }}
+                                            <span class="nav-icon nav-arrow" 
+                                            style="visability: visible" ></span>
+                                       </span>
+                                    </nuxt-link>
+                                </template>
+                                <template v-else>
+                                    <nuxt-link to="/signup" id="nav-link-accountList"
+                                        tabindex="0" class="nav-a nav-a-2">
+                                        <span class="nav-line-1" >Hello, Sign in</span>
+                                        <span class="nav-line-2">
+                                            Account &amp; Lists
+                                            <span class="nav-icon nav-arrow" 
+                                            style="visability: visible" ></span>
+                                        </span>
+                                    </nuxt-link>
+                                </template>
+
                                 <nuxt-link to="/orders" class="nav-a nav-a-2 nav-single-row-link">
                                     <span class="nav-line-1"></span>
                                     <span class="nav-line-2">Orders</span>
@@ -105,12 +118,16 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Search from "~/components/Search";
 
 export default {
-  components: {
-    Search
-  }
+    components: {
+        Search
+    },
+    computed: {
+        ...mapGetters(['isAuthenticated', 'loggedInUser'])
+    }
 }
 </script>
 

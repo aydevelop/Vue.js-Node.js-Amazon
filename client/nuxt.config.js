@@ -73,13 +73,12 @@ export default {
     extend (config, ctx) {
     }
   },
-
   auth: {
     strategies: {
       local: {
         endpoints: {
           login: { url: '/api/auth/login', method: 'post', propertyName: 'token' },
-          logout: { url: '/api/auth/logout', method: 'post' },
+          logout: false,
           user: { url: '/api/auth/user', method: 'get', propertyName: 'user' }
         }
       }

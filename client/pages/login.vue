@@ -6,7 +6,7 @@
                 </div>
 
                 <form class="col-sm-4">
-                    <div class="text-center">
+                    <div class="text-center mb-4">
                         <nuxt-link to="/">
                             <img src="/img/logo-black.png" alt="">
                         </nuxt-link>
@@ -14,19 +14,8 @@
                     <div class="a-box a-spacing-extra-large">
                         <div class="a-box-inner">
                             <h1 class="a-spacing-small">
-                                Create account
-                             </h1>   
-                                <div class="a-row a-spacing-base">
-                                    <label 
-                                    class="a-form-label"
-                                    for="ap_customer_name">
-                                        Your name
-                                    </label>
-                                    <input v-model="name" type="text" id="ap_customer_name"
-                                        class="a-input-text form-control auth-autofocus auth-required-field auth-contact-verification-request-info"
-                                    >
-                                </div>
-
+                                Sign in
+                             </h1>  
                                 <div class="a-row a-spacing-base">
                                     <label 
                                     class="a-form-label"
@@ -48,17 +37,14 @@
                                         class="a-input-text form-control auth-autofocus auth-required-field auth-contact-verification-request-info"
                                     >
                                     <div class="a-alert-container">
-                                        <div class="a-alert-content">
-                                            Password must be at least 6 characteres
-                                        </div>        
                                     </div>
                                 </div>
 
                                 <div class="a-row a-spacing-extra-large mb-4">
                                     <span class="a-button-primary">
                                         <span class="a-button-inner">
-                                            <span @click.prevent="onSignup" class="a-button-text">
-                                                Create your account
+                                            <span @click.prevent="onLogin" class="a-button-text">
+                                                Continue
                                             </span>
                                         </span>
                                     </span>
@@ -67,9 +53,9 @@
 
                                 <div class="a-row">
                                     <b>
-                                        Already have an account?
-                                        <nuxt-link to="/login" >
-                                            Sign in
+                                        Don't have an account?
+                                        <nuxt-link to="/signup" >
+                                            Register
                                         </nuxt-link>
                                     </b>
                                 </div>
@@ -91,7 +77,6 @@ export default {
     layout: "none",
     data() {
         return {
-            name: "",
             email: "",
             password: ""
         }
@@ -100,15 +85,9 @@ export default {
         ...mapGetters(['isAuthenticated', 'loggedInUser'])
     },
     methods: {
-        async onSignup() {
+        async onLogin() {
             try {
-                let data = {
-                    name: this.name,
-                    email: this.email,
-                    password: this.password
-                }
 
-                await this.$axios.$post("/api/auth/signup", data);
                 await this.$auth.loginWith("local", {
                     data: {
                         email: this.email,
@@ -116,7 +95,6 @@ export default {
                     }
                 });
                 
-                console.log(response);
             } catch (error) {
                 console.log(error);
             }
