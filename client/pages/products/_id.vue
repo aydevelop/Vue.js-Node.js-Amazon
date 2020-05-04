@@ -333,7 +333,7 @@
 export default {
   async asyncData({ $axios, params }){
     try {
-      let response = await $axios.$get(`/products/${params.id}`);
+      let response = await $axios.$get(`/api/products/${params.id}`);
       console.log(response);
       return { product: response}
     } catch (error) {

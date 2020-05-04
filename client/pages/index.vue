@@ -25,14 +25,14 @@
                     <div>
                       <div class="row">
                       <div class="col-sm-3 text-center">
-                        <a href="#" class="text-left">
+                        <a :href="`/products/${product._id}`" class="text-left">
                           <img style="position: relative; left: 15px" :src="imgUrl + '/' + product.photo" class="img-fluid">
                         </a>
                       </div>
 
                       <div class="col-sm-9">
                       <div class="a-row a-spacing-small">
-                        <a href="#" class="a-link-normal">
+                        <a :href="`/products/${product._id}`" class="a-link-normal">
                           <h2 class="a-size-medium">
                             {{ product.title }}
                             <span class="a-letter-space"></span>
@@ -141,7 +141,7 @@ export default {
 
   async asyncData({ $axios }) {
     try {
-      let resp = await $axios.$get("/products");
+      let resp = await $axios.$get("/api/products");
       return {
         products: resp
       }

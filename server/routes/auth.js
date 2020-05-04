@@ -5,6 +5,7 @@ const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 
 router.post("/signup", t(async (req, res) => {
+
     if(!req.body.email || !req.body.password){
         throw new Error("Please enter email or password");
     }else{
@@ -27,7 +28,7 @@ router.post("/signup", t(async (req, res) => {
 
 router.get("/user", verify,  t(async (req, res) => {
      let user = await User.findOne({ _id: req.decoded._id });
-     res.json(user);
+     res.json({user});
 }));
 
 router.post("/login", t(async (req, res) => {
