@@ -46,6 +46,8 @@ apiRouter.use("/categories", categoryRoutes);
 const ownerRoutes = require("./routes/owner");
 apiRouter.use("/owners", ownerRoutes)
 const authRoutes = require("./routes/auth");
-apiRouter.use("/auth", authRoutes)
+apiRouter.use("/auth", authRoutes);
+const reviewRoutes = require("./routes/review");
+apiRouter.use("/reviews", reviewRoutes);
 
 
