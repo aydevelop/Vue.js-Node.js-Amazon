@@ -10,7 +10,9 @@
                         <nuxt-link to="/">
                             <img src="/img/logo-black.png" alt="">
                         </nuxt-link>
+                        
                     </div>
+                    <br>
                     <div class="a-box a-spacing-extra-large">
                         <div class="a-box-inner">
                             <h1 class="a-spacing-small">

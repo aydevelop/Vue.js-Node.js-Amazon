@@ -33,17 +33,7 @@
                 </div>
               </span>
             </div>
-            <div class="a-row">
-              <a href="">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </a>
-              <span class="a-letter-space"></span>
-              <span class="a-color-tertiary a-size-small asin-reviews">(4394)</span>
-            </div>
+         
             <div class="a-row">
               <span class="a-size-base a-color-price">
                   <span class="p13n-sc-price">${{ product.price }}</span>

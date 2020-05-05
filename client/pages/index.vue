@@ -3,7 +3,7 @@
     <div class="counter-fluid">
       <div class="row">
         <div class="col-xl-2 col-lg-3 md-4 col-sm-4">
-          sidebar
+          <!-- sidebar -->
         </div>
         <div class="col-xl-10 col-lg-9 md-8 col-sm-8">
           <FeaturedProduct />
@@ -78,18 +78,15 @@
                                 <span class="sx-price sx-price-large">
                                   <sup class="sx-price-currency" >$</sup>
                                   <span class="xs-price-whole">
-                                    5
+                                    {{ product.price }}
                                   </span>
                                   <sup class="sx-price-fractional">
-                                    00
                                   </sup>
                                 </span>
                               </span>
                             </a>
                             <span class="a-letter-space"></span>
-                            <span class="a-size-base-plus a-color-secondary a-text-strike" >
-                              ${{ product.price }}
-                            </span>
+                            
                           </div>
 
                           <div class="a-row a-spacing-none">
